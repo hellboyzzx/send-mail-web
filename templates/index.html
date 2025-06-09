@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Email via Microsoft Graph</title>
+</head>
+<body>
+    <h2>📧 Gửi Email bằng Microsoft Graph API</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+          <li style="color: {{ 'green' if category == 'success' else 'red' }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" enctype="multipart/form-data">
+        <label>Email người nhận:</label><br>
+        <input type="email" name="to" required><br><br>
+
+        <label>Tiêu đề:</label><br>
+        <input type="text" name="subject" required><br><br>
+
+        <label>Nội dung HTML:</label><br>
+        <textarea name="content" rows="10" cols="50" required></textarea><br><br>
+
+        <label>Đính kèm file:</label><br>
+        <input type="file" name="attachment"><br><br>
+
+        <button type="submit">Gửi email</button>
+    </form>
+</body>
+</html>
